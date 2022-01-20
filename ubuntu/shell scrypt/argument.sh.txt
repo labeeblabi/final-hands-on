@@ -1,0 +1,3 @@
+echo "name is $1"
+echo "age is $2"
+echo "location is $3"

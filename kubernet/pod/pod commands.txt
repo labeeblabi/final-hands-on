@@ -1,0 +1,83 @@
+pod
+#creating our pod
+PS C:\Users\labim\OneDrive\Desktop\kuber> kubectl apply -f pod.yaml
+pod/demo created
+
+# checking the pod is running or not
+PS C:\Users\labim\OneDrive\Desktop\kuber> kubectl get pods
+NAME   READY   STATUS    RESTARTS   AGE
+demo   1/1     Running   0          29m
+
+
+#check that ping process
+PS C:\Users\labim\OneDrive\Desktop\kuber> kubectl logs demo
+64 bytes from 8.8.8.8: seq=513 ttl=37 time=18.271 ms
+64 bytes from 8.8.8.8: seq=514 ttl=37 time=20.627 ms
+64 bytes from 8.8.8.8: seq=515 ttl=37 time=19.508 ms
+64 bytes from 8.8.8.8: seq=516 ttl=37 time=22.309 ms
+64 bytes from 8.8.8.8: seq=517 ttl=37 time=18.538 ms
+64 bytes from 8.8.8.8: seq=518 ttl=37 time=20.139 ms
+64 bytes from 8.8.8.8: seq=519 ttl=37 time=20.928 ms
+......................................~~.........................................
+64 bytes from 8.8.8.8: seq=1414 ttl=37 time=20.834 ms
+64 bytes from 8.8.8.8: seq=1415 ttl=37 time=21.884 ms
+64 bytes from 8.8.8.8: seq=1416 ttl=37 time=21.488 ms
+64 bytes from 8.8.8.8: seq=1417 ttl=37 time=22.416 ms
+64 bytes from 8.8.8.8: seq=1418 ttl=37 time=58.527 ms
+64 bytes from 8.8.8.8: seq=1419 ttl=37 time=19.633 ms
+
+#deleting the pod
+PS C:\Users\labim\OneDrive\Desktop\kuber> kubectl delete -f pod.yaml
+pod "demo" deleted
+
+#enabling docker swarm
+PS C:\Users\labim\OneDrive\Desktop\kuber> docker swarm init
+
+# to add a worker to this swarm
+PS C:\Users\hp\Desktop\kubernet> docker swarm join --token SWMTKN-1-1db618d4nmhjmsxckwk13mjwswfg8b0dh370bvf0mx2mybaz3y-djg1izc1op1m2y4q08yl7wwou 192.168.65.3:2377                                    g8b0dh370bvf0mx2mybaz3y-djg1izc1op1m2y4q08yl7wwou 192.168.65.3:2377
+Error response from daemon: This node is already part of a swarm. 
+Use "docker swarm leave" to leave this swarm and join another one.
+
+# run a simple docker dervice that use an alpine-based filesystem
+PS C:\Users\hp\Desktop\kubernet> docker service create --name demo1-1db618d4nmhjmsxckwk13mjwswfg8b0dh370bvf0mx2mybaz3y-djg1izc1op1m2y4q08yl7wwou 1 alpine:3.5 ping 8.8.8.8
+b9b0804f1neviu9873j3x6ttp                                         Use "docker swarm leave" to leave this swarm and join another one.
+overall progress: 1 out of 1 tasks
+1/1: running
+verify: Service converged
+
+#checking that service 
+PS C:\Users\hp\Desktop\kubernet> docker service ps demo
+ID             NAME      IMAGE        NODE             DESIRED STATE   CURRENT STATE           ERROR     PORTS
+ssmz5e9wzy4q   demo.1    alpine:3.5   docker-desktop   Running    
+     Running 2 minutes ago
+
+# check that ping process
+PS C:\Users\hp\Desktop\kubernet> docker service logs demo
+demo.1.ssmz5e9wzy4q@docker-desktop    | PING 8.8.8.8 (8.8.8.8): 56 data bytes
+demo.1.ssmz5e9wzy4q@docker-desktop    | 64 bytes from 8.8.8.8: seq=0 ttl=37 time=24.112 ms
+demo.1.ssmz5e9wzy4q@docker-desktop    | 64 bytes from 8.8.8.8: seq=1 ttl=37 time=24.471 ms
+demo.1.ssmz5e9wzy4q@docker-desktop    | 64 bytes from 8.8.8.8: seq=2 ttl=37 time=22.699 ms
+demo.1.ssmz5e9wzy4q@docker-desktop    | 64 bytes from 8.8.8.8: seq=3 ttl=37 time=21.482 ms
+demo.1.ssmz5e9wzy4q@docker-desktop    | 64 bytes from 8.8.8.8: seq=4 ttl=37 time=21.387 ms
+demo.1.ssmz5e9wzy4q@docker-desktop    | 64 bytes from 8.8.8.8: seq=5 ttl=37 time=23.319 ms
+demo.1.ssmz5e9wzy4q@docker-desktop    | 64 bytes from 8.8.8.8: seq=6 ttl=37 time=23.669 ms
+demo.1.ssmz5e9wzy4q@docker-desktop    | 64 bytes from 8.8.8.8: seq=7 ttl=37 time=24.448 ms
+demo.1.ssmz5e9wzy4q@docker-desktop    | 64 bytes from 8.8.8.8: seq=8 ttl=37 time=25.843 ms
+demo.1.ssmz5e9wzy4q@docker-desktop    | 64 bytes from 8.8.8.8: seq=9 ttl=37 time=23.610 ms
+demo.1.ssmz5e9wzy4q@docker-desktop    | 64 bytes from 8.8.8.8: seq=10 ttl=37 time=21.179 ms
+demo.1.ssmz5e9wzy4q@docker-desktop    | 64 bytes from 8.8.8.8: seq=11 ttl=37 time=25.715 ms
+demo.1.ssmz5e9wzy4q@docker-desktop    | 64 bytes from 8.8.8.8: seq=12 ttl=37 time=26.024 ms
+demo.1.ssmz5e9wzy4q@docker-desktop    | 64 bytes from 8.8.8.8: seq=13 ttl=37 time=25.717 ms
+...........................................~~...................................................................................................
+demo.1.ssmz5e9wzy4q@docker-desktop    | 64 bytes from 8.8.8.8: seq=170 ttl=37 time=27.155 ms
+demo.1.ssmz5e9wzy4q@docker-desktop    | 64 bytes from 8.8.8.8: seq=171 ttl=37 time=23.687 ms
+demo.1.ssmz5e9wzy4q@docker-desktop    | 64 bytes from 8.8.8.8: seq=172 ttl=37 time=22.313 ms
+demo.1.ssmz5e9wzy4q@docker-desktop    | 64 bytes from 8.8.8.8: seq=173 ttl=37 time=25.155 ms
+demo.1.ssmz5e9wzy4q@docker-desktop    | 64 bytes from 8.8.8.8: seq=174 ttl=37 time=32.089 ms
+demo.1.ssmz5e9wzy4q@docker-desktop    | 64 bytes from 8.8.8.8: seq=175 ttl=37 time=22.999 ms
+demo.1.ssmz5e9wzy4q@docker-desktop    | 64 bytes from 8.8.8.8: seq=176 ttl=37 time=31.475 ms
+
+
+# remove the service
+PS C:\Users\hp\Desktop\kubernet> docker service rm demo
+demo

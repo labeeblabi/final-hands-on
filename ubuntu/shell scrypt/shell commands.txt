@@ -1,0 +1,97 @@
+labi@DESKTOP-2FVRGUF:~$ nano
+labi@DESKTOP-2FVRGUF:~$ chmod 774 for.sh
+labi@DESKTOP-2FVRGUF:~$ ./for.sh
+-bash: ./for.sh: bin/bash: bad interpreter: No such file or directory
+labi@DESKTOP-2FVRGUF:~$ ls
+for.sh  parent  trainee
+labi@DESKTOP-2FVRGUF:~$ nano for.sh
+labi@DESKTOP-2FVRGUF:~$ bash -x ./for.sh
++ (( c=1 ))
++ (( c<5 ))
++ echo enter a number
+enter a number
++ read number
+5
++ echo welcome 1 time 5
+welcome 1 time 5
++ (( c++ ))
++ (( c<5 ))
++ echo enter a number
+enter a number
++ read number
+
++ echo welcome 2 time
+welcome 2 time
++ (( c++ ))
++ (( c<5 ))
++ echo enter a number
+enter a number
++ read number
+
++ echo welcome 3 time
+welcome 3 time
++ (( c++ ))
++ (( c<5 ))
++ echo enter a number
+enter a number
++ read number
+
+# for loop
+labi@DESKTOP-2FVRGUF:~$ nano for.sh
+
+# if condition
+labi@DESKTOP-2FVRGUF:~$ nano
+labi@DESKTOP-2FVRGUF:~$ chmod 774 if.sh
+labi@DESKTOP-2FVRGUF:~$ ./if.sh
+enter the name of fruits
+banana
+selected fruits is banana and price=45/kg
+labi@DESKTOP-2FVRGUF:~$ ./if.sh
+enter the name of fruits
+apple
+the selected fruits is apple and its price=150/kg
+labi@DESKTOP-2FVRGUF:~$ nano if.sh
+labi@DESKTOP-2FVRGUF:~$ nano
+
+# hello shell
+labi@DESKTOP-2FVRGUF:~$ chmod 774 hello.sh
+labi@DESKTOP-2FVRGUF:~$ ./hello.sh
+enter your name:
+labeeb
+enter your location
+malappuram
+hello labeeb welcome to ust
+labi@DESKTOP-2FVRGUF:~$ nano hello.sh
+
+# for loop with array
+labi@DESKTOP-2FVRGUF:~$ nano
+labi@DESKTOP-2FVRGUF:~$ nano for_array.sh
+labi@DESKTOP-2FVRGUF:~$ chmod 774 for_array.sh
+labi@DESKTOP-2FVRGUF:~$ ./for_array.sh
+akhil,hari,nikhil,aru,samual,nisha
+labi@DESKTOP-2FVRGUF:~$ nano for_array.sh
+
+# function in shell
+labi@DESKTOP-2FVRGUF:~$ nano
+labi@DESKTOP-2FVRGUF:~$ chmod 774 hello_fnc.sh
+labi@DESKTOP-2FVRGUF:~$ ./hello_fnc.sh
+hello
+
+# argument passing
+labi@DESKTOP-2FVRGUF:~$ nano
+labi@DESKTOP-2FVRGUF:~$ nano hello_fnc.sh
+labi@DESKTOP-2FVRGUF:~$ nano
+labi@DESKTOP-2FVRGUF:~$ chmod 774 arguments.sh
+
+#without argument
+labi@DESKTOP-2FVRGUF:~$ ./arguments.sh
+name is
+age is
+location is
+
+
+labi@DESKTOP-2FVRGUF:~$ ./arguments.sh labeeb 23 malappuram
+name is labeeb
+age is 23
+location is malappuram
+labi@DESKTOP-2FVRGUF:~$ nano arguments.sh

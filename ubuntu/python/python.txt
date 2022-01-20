@@ -1,0 +1,164 @@
+# switching to python in ubuntu 
+
+python3
+Python 3.8.10 (default, Jun  2 2021, 10:49:15)
+[GCC 9.4.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+
+# math operations
+>>> 2+2
+4
+>>> 50-5*6
+20
+>>> 8/5
+1.6
+>>> 8//5
+1
+>>> 17%3
+2
+>>> 5*2
+10
+>>> 5**2
+25
+>>> width = 25
+>>> height =5*9
+>>> width * height
+1125
+
+# round the value
+>>> a=3254.21524
+>>> round(a,3)
+3254.215
+
+# string
+>>> a="welcome"
+>>> a[2]
+'l'
+>>> a[5]
+'m'
+>>> a
+'welcome'
+
+# LIST
+>>> items=['mi','vivo','oppo']
+>>> items
+['mi', 'vivo', 'oppo']
+>>> items.append('samsung')
+>>> items
+['mi', 'vivo', 'oppo', 'samsung']
+>>> items.insert(0,'nokia')
+>>> items
+['nokia', 'mi', 'vivo', 'oppo', 'samsung']
+>>> items.reverse()
+>>> items
+['samsung', 'oppo', 'vivo', 'mi', 'nokia']
+>>> items.sort()
+>>> items
+['mi', 'nokia', 'oppo', 'samsung', 'vivo']
+>>> items.append('iqoo')
+>>> items
+['mi', 'nokia', 'oppo', 'samsung', 'vivo', 'iqoo']
+>>> items.pop
+<built-in method pop of list object at 0x7f61f583f7c0>
+>>> items.pop()
+'iqoo'
+>>> items
+['mi', 'nokia', 'oppo', 'samsung', 'vivo']
+>>> items.clear()
+>>> items
+[]
+
+#conditional statement
+>>> x=100
+>>> if(x<10):
+...     print('x is less than two digit ')
+... elif(x<100):
+...     print('x is two digit ')
+... elif(x<1000):
+...     print('x is three digit ')
+... else:
+...     print('invalid')
+...
+x is three digit
+
+#loops
+>>> items=['vivo','oppo','nokia','mi']
+>>> items
+['vivo', 'oppo', 'nokia', 'mi']
+>>> for name in items:
+...     print(name)
+...
+vivo
+oppo
+nokia
+mi
+
+>>> for i in range(1,5):
+...     print(i)
+...
+1
+2
+3
+4
+
+>>> for i in range(len(items)):
+...     print(i,items[i])
+...
+0 vivo
+1 oppo
+2 nokia
+3 mi
+
+>>> for n in range(2,10):
+...     if n%2==0:
+...             print('even number',n)
+...     else:
+...             print('odd number',n)
+...
+even number 2
+odd number 3
+even number 4
+odd number 5
+even number 6
+odd number 7
+even number 8
+odd number 9
+
+# dictionary
+
+>>> dic={1:'maths',2:'physics',3:'english'}
+>>> dic
+{1: 'maths', 2: 'physics', 3: 'english'}
+>>> dic.items()
+dict_items([(1, 'maths'), (2, 'physics'), (3, 'english')])
+>>> dic.get(2)
+'physics'
+>>> dic.get(3)
+'english'
+>>> dic.keys()
+dict_keys([1, 2, 3])
+
+# class in python
+>>> class school:
+...     def student(self,name,age):
+...             self.n=name
+...             self.a=age
+...     def getinfo(self):
+...             print('student name:',self.n,'student age:',self.a)
+>>> x=school()
+>>> x.student('hari',12)
+>>> x.getinfo()
+student name: hari student age: 12
+
+
+# class by default constructor
+>>> class trainee:
+...     def __init__(self,name,role):
+...             self.n=name
+...             self.r=role
+...     def get(self):
+...             print('name=',self.n,'role=',self.r)
+...
+>>> x=trainee('akhil','developer')
+>>> x.get()
+name= akhil role= developer

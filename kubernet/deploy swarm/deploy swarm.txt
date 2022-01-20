@@ -1,0 +1,9 @@
+PS C:\Users\hp\Desktop\kubernet> docker stack deploy -c bb-stack.yaml demo
+Creating network demo_default
+Creating service demo_bb-app
+PS C:\Users\hp\Desktop\kubernet> docker service ls
+ID             NAME          MODE         REPLICAS   IMAGE                               PORTS
+tawp5alhgszd   demo_bb-app   replicated   0/1        labeeblabi/getting-started:latest   *:3000->3000/tcp
+PS C:\Users\hp\Desktop\kubernet> docker stack rm demo
+Removing service demo_bb-app
+Removing network demo_default

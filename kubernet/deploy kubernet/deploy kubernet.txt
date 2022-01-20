@@ -1,0 +1,23 @@
+# deploying our application to kubernet
+PS C:\Users\hp\Desktop\kubernet> kubectl apply -f bb.yaml
+deployment.apps/bb-demo created
+service/bb-entrypoint created
+
+#checking deployment
+PS C:\Users\hp\Desktop\kubernet> kubectl get deployments
+NAME      READY   UP-TO-DATE   AVAILABLE   AGE
+bb-demo   1/1     1            1           2m42s
+
+# checking the services
+PS C:\Users\hp\Desktop\kubernet> kubectl get services
+NAME            TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S) 
+         AGE
+bb-entrypoint   NodePort    10.101.176.45   <none>        3000:30001/TCP   4m9s
+kubernetes      ClusterIP   10.96.0.1       <none>        443/TCP 
+         6d13h
+
+# checking the localhost and verify
+#after that delete the deployment and services
+PS C:\Users\hp\Desktop\kubernet> kubectl delete -f bb.yaml        
+deployment.apps "bb-demo" deleted
+service "bb-entrypoint" deleted

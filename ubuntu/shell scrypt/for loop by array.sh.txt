@@ -1,0 +1,5 @@
+trainee=("akhil","hari","nikhil","aru","samual","nisha")
+for name in "${trainee[@]}"
+        do
+                echo $name
+        done

@@ -1,0 +1,15 @@
+---
+# tasks file for install-tomcat
+# install tomcat
+-
+ block:
+ - name: install Tomcat artifacts
+   action: >
+    yum name= "demo-tomcat-1" state = present
+   register: Output
+ always:
+ - debug:
+   msg:
+    - "Install Tomcat artifacts task ended with message: {{Output}}"
+    - "Install Tomcat artifacts - {{Output.changed}}"
+...

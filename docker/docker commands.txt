@@ -1,0 +1,14 @@
+1.for build new image 
+docker build -t (iamge name) .
+
+2.for run the container from that image 
+docker run -dp 3000:3000 (port number for publishing) (name of the image)
+
+3.docker ps: check the status of container,
+  docker ps -a
+
+4.docker image ls,docker container ls:listing
+
+5.docker stop (container name),docker kill (container name) : stop the container
+
+6.docker rm (container id) : for delete the container

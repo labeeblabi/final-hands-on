@@ -1,0 +1,163 @@
+# Clone the Lab’s GitHub Repo  
+$ git clone https://github.com/dockersamples/linux_tweet_app
+
+# Task 1: Run some simple Docker containers
+ $ docker container run alpine hostname
+# the output like
+ 
+Unable to find image 'alpine:latest' locally
+ latest: Pulling from library/alpine
+ 88286f41530e: Pull complete
+ Digest: sha256:f006ecbb824d87947d0b51ab8488634bf69fe4094959d935c0c103f4820a417d
+ Status: Downloaded newer image for alpine:latest
+ 888e89a3b36b
+
+# listing
+ $ docker container ls --all
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS            PORTS               NAMES
+ 888e89a3b36b        alpine              "hostname"          50 seconds ago      Exited (0) 49 seconds ago                       awesome_elion
+
+
+# Run an interactive Ubuntu container
+$  docker container run --interactive --tty --rm ubuntu bash
+
+
+# Run a background MySQL container
+docker container run \
+ --detach \
+ --name mydb \
+ -e MYSQL_ROOT_PASSWORD=my-secret-pw \
+ mysql:latest
+
+#output
+Unable to find image 'mysql:latest' locallylatest: Pulling from library/mysql
+ aa18ad1a0d33: Pull complete
+ fdb8d83dece3: Pull complete
+ 75b6ce7b50d3: Pull complete
+ ed1d0a3a64e4: Pull complete
+ 8eb36a82c85b: Pull complete
+ 41be6f1a1c40: Pull complete
+ 0e1b414eac71: Pull complete
+ 914c28654a91: Pull complete
+ 587693eb988c: Pull complete
+ b183c3585729: Pull complete
+ 315e21657aa4: Pull complete
+ Digest: sha256:0dc3dacb751ef46a6647234abdec2d47400f0dfbe77ab490b02bffdae57846ed
+ Status: Downloaded newer image for mysql:latest
+ 41d6157c9f7d1529a6c922acb8167ca66f167119df0fe3d86964db6c0d7ba4e0
+
+# list the containers
+ docker container ls
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS            NAMES
+ 3f4e8da0caf7        mysql:latest        "docker-entrypoint..."   52 seconds ago      Up 51 seconds       3306/tcp            mydb
+
+#Task 2: Package and run a custom app using Docker
+#Build a simple website image
+$ cd ~/linux_tweet_app
+# check the content in docker file 
+$cat Dockerfile
+
+ FROM nginx:latest
+
+ COPY index.html /usr/share/nginx/html
+ COPY linux.png /usr/share/nginx/html
+
+ EXPOSE 80 443     
+
+ CMD ["nginx", "-g", "daemon off;"]
+
+# creating image
+$ docker image build --tag $DOCKERID/linux_tweet_app:1.0 .
+
+ Sending build context to Docker daemon  32.77kB
+ Step 1/5 : FROM nginx:latest
+ latest: Pulling from library/nginx
+ afeb2bfd31c0: Pull complete
+ 7ff5d10493db: Pull complete
+ d2562f1ae1d0: Pull complete
+ Digest: sha256:af32e714a9cc3157157374e68c818b05ebe9e0737aac06b55a09da374209a8f9
+ Status: Downloaded newer image for nginx:latest
+ ---> da5939581ac8
+ Step 2/5 : COPY index.html /usr/share/nginx/html
+ ---> eba2eec2bea9
+ Step 3/5 : COPY linux.png /usr/share/nginx/html
+ ---> 4d080f499b53
+ Step 4/5 : EXPOSE 80 443
+ ---> Running in 47232cb5699f
+ ---> 74c968a9165f
+ Removing intermediate container 47232cb5699f
+ Step 5/5 : CMD nginx -g daemon off;
+ ---> Running in 4623761274ac
+ ---> 12045a0df899
+ Removing intermediate container 4623761274ac
+ Successfully built 12045a0df899
+ Successfully tagged <your docker ID>/linux_tweet_app:latest
+
+# run the container
+$ docker container run \
+ --detach \
+ --publish 80:80 \
+ --name linux_tweet_app \
+ $DOCKERID/linux_tweet_app:1.0
+
+# after that stop and remove the container by 
+$ docker container rm --force linux_tweet_app
+
+
+#Task 3: Modify a running website
+#Start our web app with a bind mount
+
+# run the modified website
+$ docker container run \
+ --detach \
+ --publish 80:80 \
+ --name linux_tweet_app \
+ --mount type=bind,source="$(pwd)",target=/usr/share/nginx/html \
+ $DOCKERID/linux_tweet_app:1.0
+
+#Modify the running website
+$ cp index-new.html index.html
+
+# remove
+$docker rm --force linux_tweet_app
+
+# run the old website
+$docker container run \
+ --detach \
+ --publish 80:80 \
+ --name linux_tweet_app \
+ $DOCKERID/linux_tweet_app:1.0
+
+# remove it
+$docker rm --force linux_tweet_app
+
+#Update the image
+# creating new image
+$ docker image build --tag $DOCKERID/linux_tweet_app:2.0 .
+
+
+# test new version
+$ docker container run \
+ --detach \
+ --publish 80:80 \
+ --name linux_tweet_app \
+ $DOCKERID/linux_tweet_app:2.0
+
+# run the old webiste in defferent port
+$ docker container run \
+ --detach \
+ --publish 8080:80 \
+ --name old_linux_tweet_app \
+ $DOCKERID/linux_tweet_app:1.0
+
+
+#checking the images
+$ docker image ls -f reference="$DOCKERID/*"
+ REPOSITORY                     TAG                 IMAGE ID            CREATED             SIZE
+ <docker id>/linux_tweet_app    2.0                 01612e05312b        3 minutes ago       108MB
+ <docker id>/linux_tweet_app    1.0                 bb32b5783cd3        7 minutes ago       108MB
+
+# pushing these images to our docker hub
+$ docker login
+$ docker image push $DOCKERID/linux_tweet_app:1.0
+$ docker image push $DOCKERID/linux_tweet_app:2.0

@@ -1,0 +1,6 @@
+---
+- hosts: tomcat-node
+roles:
+ - {role: install-tomcat}
+ - {role: start-tomcat}
+...

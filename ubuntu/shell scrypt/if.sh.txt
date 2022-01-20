@@ -1,0 +1,10 @@
+echo enter the name of fruits
+read fruits
+if [ $fruits = mango ]
+        then echo "the selected fruits is mango and its price=100/kg"
+elif [ $fruits = apple ]
+        then echo "the selected fruits is apple and its price=150/kg"
+elif [ $fruits = banana ]
+        then echo "selected fruits is banana and price=45/kg"
+else echo "select a fruit"
+fi

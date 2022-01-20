@@ -1,0 +1,397 @@
+# showing the working directory 
+labi@DESKTOP-2FVRGUF:~$ pwd
+/home/labi
+
+# create new directory
+labi@DESKTOP-2FVRGUF:~$ mkdir trainee
+
+# list the all file
+labi@DESKTOP-2FVRGUF:~$ ls
+trainee
+
+# changing directory by cd
+labi@DESKTOP-2FVRGUF:~$ cd trainee
+
+labi@DESKTOP-2FVRGUF:~/trainee$ ls
+
+# back to previouse directory
+labi@DESKTOP-2FVRGUF:~/trainee$ cd ..
+
+labi@DESKTOP-2FVRGUF:~$ ls
+trainee
+
+# creating parent and child directory and check it
+labi@DESKTOP-2FVRGUF:~$ mkdir -p parent/child
+labi@DESKTOP-2FVRGUF:~$ ls
+parent  trainee
+labi@DESKTOP-2FVRGUF:~$ cd parent
+labi@DESKTOP-2FVRGUF:~/parent$ ls
+child
+labi@DESKTOP-2FVRGUF:~/parent$ cd child
+labi@DESKTOP-2FVRGUF:~/parent/child$ cd ../..
+labi@DESKTOP-2FVRGUF:~$ ls
+parent  trainee
+labi@DESKTOP-2FVRGUF:~$ cd parent
+labi@DESKTOP-2FVRGUF:~/parent$ cd child
+
+# create a file with content
+labi@DESKTOP-2FVRGUF:~/parent/child$ echo "welcome" >> welcome.txt
+
+# print the output
+labi@DESKTOP-2FVRGUF:~/parent/child$ cat welcome.txt
+welcome
+
+# using nano editor and create new text file
+labi@DESKTOP-2FVRGUF:~/parent/child$ nano
+labi@DESKTOP-2FVRGUF:~/parent/child$ ls
+info.txt  welcome.txt
+
+# print all txt file
+labi@DESKTOP-2FVRGUF:~/parent/child$ cat *.txt
+name=hari
+age=21
+location=malappuram
+welcome
+
+# append to existing file
+labi@DESKTOP-2FVRGUF:~/parent/child$ echo "qualification= B.tech" >> info.txt
+labi@DESKTOP-2FVRGUF:~/parent/child$ cat *.txt
+name=hari
+age=21
+location=malappuram
+qualification= B.tech
+welcome
+labi@DESKTOP-2FVRGUF:~/parent/child$ pwd
+/home/labi/parent/child
+
+# move file by mv
+labi@DESKTOP-2FVRGUF:~/parent/child$ mv info.txt /home/labi/parent
+labi@DESKTOP-2FVRGUF:~/parent/child$ ls
+welcome.txt
+labi@DESKTOP-2FVRGUF:~/parent/child$ cd ..
+labi@DESKTOP-2FVRGUF:~/parent$ ls
+child  info.txt
+labi@DESKTOP-2FVRGUF:~/parent$ cat info
+cat: info: No such file or directory
+labi@DESKTOP-2FVRGUF:~/parent$ cat info.txt
+name=hari
+age=21
+location=malappuram
+qualification= B.tech
+
+# copy the file by cp
+labi@DESKTOP-2FVRGUF:~/parent$ cp info.txt /home/labi/parent/child
+labi@DESKTOP-2FVRGUF:~/parent$ ls
+child  info.txt
+labi@DESKTOP-2FVRGUF:~/parent$ cd child
+labi@DESKTOP-2FVRGUF:~/parent/child$ ls
+info.txt  welcome.txt
+
+# rename file by mv
+labi@DESKTOP-2FVRGUF:~/parent/child$ mv info.txt infox.txt
+labi@DESKTOP-2FVRGUF:~/parent/child$ ls
+infox.txt  welcome.txt
+labi@DESKTOP-2FVRGUF:~/parent/child$ who
+labi@DESKTOP-2FVRGUF:~/parent/child$ cd
+
+# check the user info
+labi@DESKTOP-2FVRGUF:~$ who
+labi@DESKTOP-2FVRGUF:~$ whoami
+labi
+labi@DESKTOP-2FVRGUF:~$ id
+uid=1000(labi) gid=1000(labi) groups=1000(labi),4(adm),20(dialout),24(cdrom),25(floppy),27(sudo),29(audio),30(dip),44(video),46(plugdev),117(netdev)
+
+# man command
+labi@DESKTOP-2FVRGUF:~$ man ls
+
+# check the details
+labi@DESKTOP-2FVRGUF:~$ cat /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:100:102:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin
+systemd-resolve:x:101:103:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin
+systemd-timesync:x:102:104:systemd Time Synchronization,,,:/run/systemd:/usr/sbin/nologin
+messagebus:x:103:106::/nonexistent:/usr/sbin/nologin
+syslog:x:104:110::/home/syslog:/usr/sbin/nologin
+_apt:x:105:65534::/nonexistent:/usr/sbin/nologin
+tss:x:106:111:TPM software stack,,,:/var/lib/tpm:/bin/false
+uuidd:x:107:112::/run/uuidd:/usr/sbin/nologin
+tcpdump:x:108:113::/nonexistent:/usr/sbin/nologin
+sshd:x:109:65534::/run/sshd:/usr/sbin/nologin
+landscape:x:110:115::/var/lib/landscape:/usr/sbin/nologin
+pollinate:x:111:1::/var/cache/pollinate:/bin/false
+labi:x:1000:1000:,,,:/home/labi:/bin/bash
+aslam:x:1001:1001:,,,:/home/aslam:/bin/bash
+labi@DESKTOP-2FVRGUF:~$ cat /etc/groups
+cat: /etc/groups: No such file or directory
+
+# check groups
+labi@DESKTOP-2FVRGUF:~$ cat /etc/group
+root:x:0:
+daemon:x:1:
+bin:x:2:
+sys:x:3:
+adm:x:4:syslog,labi
+tty:x:5:syslog
+disk:x:6:
+lp:x:7:
+mail:x:8:
+news:x:9:
+uucp:x:10:
+man:x:12:
+proxy:x:13:
+kmem:x:15:
+dialout:x:20:labi
+fax:x:21:
+voice:x:22:
+cdrom:x:24:labi
+floppy:x:25:labi
+tape:x:26:
+sudo:x:27:labi
+audio:x:29:labi
+dip:x:30:labi
+www-data:x:33:
+backup:x:34:
+operator:x:37:
+list:x:38:
+irc:x:39:
+src:x:40:
+gnats:x:41:
+shadow:x:42:
+utmp:x:43:
+video:x:44:labi
+sasl:x:45:
+plugdev:x:46:labi
+staff:x:50:
+games:x:60:
+users:x:100:
+nogroup:x:65534:
+systemd-journal:x:101:
+systemd-network:x:102:
+systemd-resolve:x:103:
+systemd-timesync:x:104:
+crontab:x:105:
+messagebus:x:106:
+input:x:107:
+kvm:x:108:
+render:x:109:
+syslog:x:110:
+tss:x:111:
+uuidd:x:112:
+tcpdump:x:113:
+ssh:x:114:
+landscape:x:115:
+admin:x:116:
+netdev:x:117:labi
+lxd:x:118:
+labi:x:1000:
+aslam:x:1001:
+labi@DESKTOP-2FVRGUF:~$ cd parent
+
+# check file type
+labi@DESKTOP-2FVRGUF:~/parent$ file info.txt
+info.txt: ASCII text
+
+# print the file in index format
+labi@DESKTOP-2FVRGUF:~/parent$ ls -li info.txt
+40761 -rw-rw-r-- 1 labi labi 59 Jan 19 22:10 info.txt
+
+# print the file in long format
+labi@DESKTOP-2FVRGUF:~/parent$ ls -l info.txt
+-rw-rw-r-- 1 labi labi 59 Jan 19 22:10 info.txt
+
+# given the rwx permissions
+labi@DESKTOP-2FVRGUF:~/parent$ chmod +rwx info.txt
+labi@DESKTOP-2FVRGUF:~/parent$ ls -l info.txt
+-rwxrwxr-x 1 labi labi 59 Jan 19 22:10 info.txt
+labi@DESKTOP-2FVRGUF:~/parent$ chmod -rwx info.txt
+labi@DESKTOP-2FVRGUF:~/parent$ ls -l info.txt
+---------- 1 labi labi 59 Jan 19 22:10 info.txt
+labi@DESKTOP-2FVRGUF:~/parent$ chmod +rwx info.txt
+labi@DESKTOP-2FVRGUF:~/parent$ chmod -rwx info.txt
+labi@DESKTOP-2FVRGUF:~/parent$ chmod 774 info.txt
+labi@DESKTOP-2FVRGUF:~/parent$ ls -l info.txt
+-rwxrwxr-- 1 labi labi 59 Jan 19 22:10 info.txt
+
+
+labi@DESKTOP-2FVRGUF:~/parent$ nano info.txt
+
+# delete by rm command
+labi@DESKTOP-2FVRGUF:~/parent$ rm info.txt
+labi@DESKTOP-2FVRGUF:~/parent$ ls
+child
+
+# create file by touch command
+labi@DESKTOP-2FVRGUF:~/parent$ touch info.txt
+labi@DESKTOP-2FVRGUF:~/parent$ touch info1.txt
+labi@DESKTOP-2FVRGUF:~/parent$ touch info2.txt
+
+# find the file by find 
+labi@DESKTOP-2FVRGUF:~/parent$ find .-name *.txt
+find: ‘.-name’: No such file or directory
+info.txt
+info1.txt
+info2.txt
+labi@DESKTOP-2FVRGUF:~/parent$ cd
+labi@DESKTOP-2FVRGUF:~$ find .-name
+find: ‘.-name’: No such file or directory
+labi@DESKTOP-2FVRGUF:~$ find .-name .
+find: ‘.-name’: No such file or directory
+.
+./.landscape
+./.landscape/sysinfo.log
+./.sudo_as_admin_successful
+./.bash_history
+./.motd_shown
+./.profile
+./.bash_logout
+./.bashrc
+./.local
+./.local/share
+./.local/share/nano
+./parent
+./parent/info2.txt
+./parent/child
+./parent/child/infox.txt
+./parent/child/welcome.txt
+./parent/info1.txt
+./parent/info.txt
+./trainee
+labi@DESKTOP-2FVRGUF:~$ find . -type d -name "*t"
+./parent
+labi@DESKTOP-2FVRGUF:~$ find . -type d -name "t*"
+./trainee
+labi@DESKTOP-2FVRGUF:~$ find . -type d -name ""
+labi@DESKTOP-2FVRGUF:~$ find . -type d -name " "
+labi@DESKTOP-2FVRGUF:~$ find . -type d -name " p"
+labi@DESKTOP-2FVRGUF:~$ find . -type d -name "p"
+labi@DESKTOP-2FVRGUF:~$ find . -type d -name "*p*"
+./.landscape
+./parent
+
+#showing the free space
+labi@DESKTOP-2FVRGUF:~$ free
+              total        used        free      shared  buff/cache   available
+Mem:        6427960       67876     6222684          76      137400     6165728
+Swap:       2097152           0     2097152
+
+# show the time
+labi@DESKTOP-2FVRGUF:~$ uptime
+ 22:20:21 up 25 min,  0 users,  load average: 0.00, 0.00, 0.00
+
+# top command (show dynamic real time view of running process)
+top - 22:46:19 up 51 min,  0 users,  load average: 0.00, 0.00, 0.00
+Tasks:   7 total,   1 running,   6 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.1 sy,  0.0 ni, 99.9 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :   6277.3 total,   6075.4 free,     67.4 used,    134.5 buff/cache
+MiB Swap:   2048.0 total,   2048.0 free,      0.0 used.   6019.9 avail Mem
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+    1 root      20   0     900    528    464 S   0.0   0.0   0:00.21 init
+   56 root      20   0     900     84     20 S   0.0   0.0   0:00.00 init
+   57 root      20   0     900     84     20 S   0.0   0.0   0:00.67 init
+   58 labi      20   0   10040   5096   3384 S   0.0   0.1   0:00.13 bash
+  153 root      20   0   10492   4064   3360 S   0.0   0.1   0:00.01 su
+  154 labi      20   0   10000   4936   3320 S   0.0   0.1   0:00.42 bash
+  282 labi      20   0   10876   3824   3312 R   0.0   0.1   0:00.01 top
+
+# last logged info
+labi@DESKTOP-2FVRGUF:~$ last
+
+wtmp begins Wed Jan 19 21:54:39 2022
+
+#active process info by ps
+labi@DESKTOP-2FVRGUF:~$ ps
+  PID TTY          TIME CMD
+   58 pts/0    00:00:00 bash
+  154 pts/0    00:00:00 bash
+  286 pts/0    00:00:00 ps
+
+#environment command
+labi@DESKTOP-2FVRGUF:~$ env
+SHELL=/bin/bash
+WSL_DISTRO_NAME=Ubuntu-20.04
+NAME=DESKTOP-2FVRGUF
+PWD=/home/labi
+LOGNAME=labi
+MOTD_SHOWN=update-motd
+HOME=/home/labi
+LANG=C.UTF-8
+WSL_INTEROP=/run/WSL/57_interop
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+LESSCLOSE=/usr/bin/lesspipe %s %s
+TERM=xterm-256color
+LESSOPEN=| /usr/bin/lesspipe %s
+USER=labi
+SHLVL=2
+WSLENV=
+XDG_DATA_DIRS=/usr/local/share:/usr/share:/var/lib/snapd/desktop
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+MAIL=/var/mail/labi
+HOSTTYPE=x86_64
+OLDPWD=/home/labi/parent
+_=/usr/bin/env
+
+
+# disk space by df 
+labi@DESKTOP-2FVRGUF:~$ df
+Filesystem     1K-blocks     Used Available Use% Mounted on
+/dev/sdb       263174212  1223252 248512804   1% /
+tmpfs            3213980        0   3213980   0% /mnt/wsl
+tools          233795636 70047056 163748580  30% /init
+none             3211896        0   3211896   0% /dev
+none             3213980       12   3213968   1% /run
+none             3213980        0   3213980   0% /run/lock
+none             3213980        0   3213980   0% /run/shm
+none             3213980        0   3213980   0% /run/user
+tmpfs            3213980        0   3213980   0% /sys/fs/cgroup
+drivers        233795636 70047056 163748580  30% /usr/lib/wsl/drivers
+lib            233795636 70047056 163748580  30% /usr/lib/wsl/lib
+C:\            233795636 70047056 163748580  30% /mnt/c
+D:\            390406140  8201328 382204812   3% /mnt/d
+E:\            255999996  6699072 249300924   3% /mnt/e
+F:\            330353660   107248 330246412   1% /mnt/f
+
+
+# adding new user
+labi@DESKTOP-2FVRGUF:~$ sudo adduser labeeb
+[sudo] password for labi:
+Adding user `labeeb' ...
+Adding new group `labeeb' (1002) ...
+Adding new user `labeeb' (1002) with group `labeeb' ...
+Creating home directory `/home/labeeb' ...
+Copying files from `/etc/skel' ...
+New password:
+Retype new password:
+passwd: password updated successfully
+Changing the user information for labeeb
+Enter the new value, or press ENTER for the default
+        Full Name []:
+        Room Number []:
+        Work Phone []:
+        Home Phone []:
+        Other []:
+Is the information correct? [Y/n] y
+
+# switch to user bu su
+labi@DESKTOP-2FVRGUF:~$ su labi
+Password:
+labi@DESKTOP-2FVRGUF:~$ su labeeb
+Password:
+

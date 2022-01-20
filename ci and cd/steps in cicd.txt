@@ -1,0 +1,16 @@
+Before we start, ensure we can access Docker Hub from any workflows we create. To do this
+
+.Add our Docker ID as a secret to GitHub. Navigate to your GitHub repository and click Settings > Secrets > New secret.
+.Create a new secret with the name DOCKER_HUB_USERNAME and your Docker ID as value.
+.Create a new Personal Access Token (PAT). To create a new token, go to Docker Hub Settings and then click New Access Token.
+and gives the name of  token simplewhaleci.
+
+Now, add this Personal Access Token (PAT) as a second secret into the GitHub secrets UI with the name DOCKER_HUB_ACCESS_TOKEN.
+
+To set up the workflow:
+
+.Go to our repository in GitHub and then click Actions > New workflow.
+Click set up a workflow yourself and add the content in the wokflow txt file
+
+
+
