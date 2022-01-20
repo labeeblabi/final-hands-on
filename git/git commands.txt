@@ -1,4 +1,5 @@
 $ history
+# list the files
     1  ls
     2  cd Downloads
     3  ls
@@ -20,14 +21,39 @@ $ history
    14  git init
    15  git commit -m 'new version'
    16  git status
-# before commiting we need to add all file into git
+# before commiting we need to add all file into git(adding all file)
    17  git add .
+          git add (file name)  #add a specific file
    18  git status
    19  git commit -m 'new version'
 # add the remote 
    20  git remote add origin https://github.com/labeeblabi/simplewhale
    21  git remote -v
-# switche to master branch to main
+origin  https://github.com/labeeblabi/hands-on-20-01-22-.git (fetch)
+origin  https://github.com/labeeblabi/hands-on-20-01-22-.git (push)
+
+# switch to master branch to main
    22  git branch -M main
 # push this file into the remote (origin)
    23  git push origin main
+
+#cloning 
+git clone (url)
+
+#add new branch
+git branch (new branch name)
+git branch # showing all branches
+
+#merge branches
+git merge (master branch)
+
+#unstage a file
+git reset [file]
+
+#undoes the commit
+git reset [commit]
+
+# removing file by git
+git rm [file]
+
+
